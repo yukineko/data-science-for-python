@@ -1,5 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt 
+import pandas as pd
+
 dice_data = np.array([1,2,3,4,5,6])
 print(np.random.choice(dice_data, 1))
 calc_steps = 1000
@@ -39,4 +41,11 @@ def bernoulli_distribution():
     plt.xticks([0, 1], ['裏', '表'])
     plt.show()
 
-bernoulli_distribution()
+# bernoulli_distribution()
+def kernel_density():
+    student_data_math = pd.read_csv("./student/student-mat.csv", sep=";")
+    student_data_math.absences.plot(kind="kde", style="k--")
+    student_data_math.absences.hist(density=True)
+    plt.grid(True)
+    plt.show()
+

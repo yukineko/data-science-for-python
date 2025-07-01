@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-
+import pandas as pd
 def binomial_distribution():
     # Generate a binomial distribution with n=30, p=0.5
     np.random.seed(0)
@@ -43,5 +43,35 @@ def lognormal_distribution():
     plt.show()    
     # Plot the histogram of the log-normal distribution
 
-lognormal_distribution()
+#lognormal_distribution()
 
+def kernel_density():
+    student_data_math = pd.read_csv("./student/student-mat.csv", sep=";")
+    student_data_math.absences.plot(kind="kde", style="k--")
+    student_data_math.absences.hist(density=True)
+    plt.grid(True)
+    plt.show()
+
+
+def practice1():
+    np.random.seed(0)
+    x = [np.random.normal(0, 1, 100).mean() for _ in range(10000)]
+    plt.hist(x)
+    plt.grid(True)
+    plt.show()
+
+def practice2():
+    np.random.seed(0)
+    x = [np.random.lognormal(0, 1, 100).mean() for _ in range(10000)]
+    plt.hist(x)
+    plt.grid(True)
+    plt.show()
+
+def practice3():
+    student_data_math = pd.read_csv("./student/student-mat.csv", sep=";")
+    student_data_math.G1.plot(kind="kde", style="k--")
+    student_data_math.G1.hist(density=True)
+    plt.grid(True)
+    plt.show()
+
+practice3()
