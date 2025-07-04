@@ -42,10 +42,3 @@ def bernoulli_distribution():
     plt.show()
 
 # bernoulli_distribution()
-def kernel_density():
-    student_data_math = pd.read_csv("./student/student-mat.csv", sep=";")
-    student_data_math.absences.plot(kind="kde", style="k--")
-    student_data_math.absences.hist(density=True)
-    plt.grid(True)
-    plt.show()
-
