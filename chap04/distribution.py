@@ -55,17 +55,22 @@ def kernel_density():
 
 def practice1():
     np.random.seed(0)
+    # 標準分布の乱数を平均するのを10000回行う
     x = [np.random.normal(0, 1, 100).mean() for _ in range(10000)]
     plt.hist(x)
     plt.grid(True)
     plt.show()
+#practice1()
 
 def practice2():
     np.random.seed(0)
+    # 対数分布の乱数を平均するのを10000回行う
     x = [np.random.lognormal(0, 1, 100).mean() for _ in range(10000)]
     plt.hist(x)
     plt.grid(True)
     plt.show()
+
+#practice2()
 
 def practice3():
     student_data_math = pd.read_csv("./student/student-mat.csv", sep=";")
@@ -73,5 +78,7 @@ def practice3():
     student_data_math.G1.hist(density=True)
     plt.grid(True)
     plt.show()
+#practice3()
 
-practice3()
+
+
