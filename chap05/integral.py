@@ -1,5 +1,6 @@
 from scipy import integrate
 from scipy.optimize import fsolve, minimize
+import scipy.linalg as linalg
 import numpy as np
 import math
 import matplotlib.pyplot as plt
@@ -77,14 +78,50 @@ def practice517():
 
 def practice518():
     def f(x):
-        return x ** 3 + 2 * x ** 3 - 11 * x + 12
-    x = np.linspace(-10, 10, 100)
+        return x ** 3 - 2 * x ** 2 - 11 * x + 12
+    # x = np.linspace(-5, 5, 100)
     # plt.plot(x, f(x), label='f(x)')
     # plt.plot(x, np.zeros(len(x)))
     # plt.grid(True)
     # plt.show()
     
-    x = fsolve(f, 0)
+    x = fsolve(f, 1)
     print(x)
 
-practice518()
+#practice518()
+
+def practice_51():
+    A = np.array([
+        [5,1,0,1],
+        [1,9,-5,7],
+        [0,-5,8,-3],
+        [1,7,-3,10]
+    ])
+    B = np.array([2,10,5,10])
+    x = linalg.cholesky(A)
+    print('L:\n', x)
+    t = linalg.solve(x.T.conj(), B)
+    x = linalg.solve(x, t)
+    print('x:\n', x)
+
+#practice_51()
+
+def practice_52():
+    r = integrate.dblquad(lambda x, y: 1/(np.sqrt(x+y) * (1+x+y)**2), 0, 1,
+                          lambda x: 0, lambda x: 1-x)
+    print(r)
+
+#practice_52()
+
+def minfx(x):
+    return x ** 2 + 1
+    
+def constraintfx(x):
+    return x + 1
+
+con1 = (
+    {'type': 'ineq', 'fun': constraintfx}
+    )
+x = -1
+sol = minimize(minfx, x0=x, constraints=con1, method='SLSQP')
+print(sol)
